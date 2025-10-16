@@ -30,7 +30,7 @@ const Signup = () => {
                 "❌ Password must be at least 8 characters long and include uppercase, lowercase, number, and special symbol."
             );
             return;
-        }
+        };
 
 
 
@@ -42,7 +42,14 @@ const Signup = () => {
 
         })
         .catch((e)=>{
-           toast.error(e.message);
+            console.log(e.code);
+           if(e.code == "auth/email-already-in-use"){
+            toast.error("User already exist in database.");
+           }else if(e.code == "auth/weak-password"){
+            toast.error("Password most be 8 characters.");
+           }else{
+            toast.error(e.message);
+           }
         })
 
     };
