@@ -1,19 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router';
 import MyComponent from './MyComponent';
 import MyLink from './MyLink';
+import { Link } from 'react-router';
+
+
+
 
 const Navbar = () => {
 const links = <>
     <li><MyLink to={"/"} className={"text-blue-500"}>Home</MyLink></li>
-    <li><MyLink to={"/about-us"}  className={"text-blue-500"}>AboutUs</MyLink></li>
+    <li><MyLink to={"/about-us"}  className={"text-blue-500"}>About Us</MyLink></li>
     <li><MyLink to={"/profile"}  className={"text-blue-500"}>Profile</MyLink></li>
-    {/* <li><NavLink to={'/'} className={({isActive})=> isActive? "text-purple-500":"" }>Home</NavLink></li>
-    <li><NavLink to={'/about-us'} className={({isActive})=> isActive? "text-purple-500":"" }>AboutUs</NavLink></li>
-    <li><NavLink to={'/profile'} className={({isActive})=> isActive? "text-purple-500":"" } >Profile</NavLink></li> */}
-</>
+   </>
+
     return (
-        <nav className='shadow-sm'>
+        <nav>
             <MyComponent className={"flex items-center justify-between"}>
                 <div className="navbar bg-base-100 ">
                 <div className="navbar-start">
@@ -27,7 +28,7 @@ const links = <>
                             {links}
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <Link to={"/"} className=" text-xl font-bold text-blue-500">Firebase Fighter</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -35,7 +36,7 @@ const links = <>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <Link to={"/signin"}  className={"btn bg-blue-500 hover:bg-purple-500  text-white"}>Sign in</Link>
                 </div>
                 </div>
             </MyComponent>
