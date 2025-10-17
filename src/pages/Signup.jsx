@@ -43,13 +43,34 @@ const Signup = () => {
         })
         .catch((e)=>{
             console.log(e.code);
-           if(e.code == "auth/email-already-in-use"){
+
+            const errorCode = e.code; 
+
+           if(errorCode === "auth/email-already-in-use"){
             toast.error("User already exist in database.");
-           }else if(e.code == "auth/weak-password"){
+           }else if(errorCode === "auth/weak-password"){
             toast.error("Password most be 8 characters.");
-           }else{
-            toast.error(e.message);
-           }
+           }else if(errorCode === "auth/invalid-email") {
+            toast.error("Invalid email address.");
+            } else if (errorCode === "auth/user-disabled") {
+            toast.error("Your account has been disabled. Contact support.");
+            } else if (errorCode === "auth/user-not-found") {
+            toast.error("No account found with this email. Please sign up first.");
+            } else if (errorCode === "auth/wrong-password") {
+            toast.error("Incorrect password. Try again!");
+            } else if (errorCode === "auth/too-many-requests") {
+            toast.warn("Too many failed attempts. Please wait and try again later.");
+            } else if (errorCode === "auth/network-request-failed") {
+            toast.error("Network error. Please check your internet connection.");
+            } else if (errorCode === "auth/invalid-credential") {
+            toast.error("Invalid credentials. Please try again.");
+            } else if (errorCode === "auth/operation-not-allowed") {
+            toast.error("This login method is not enabled on the server.");
+            } else if (errorCode === "auth/requires-recent-login") {
+            toast.info("Please log in again to continue.");
+            } else {
+            toast.error("Unknown error occurred: " + e.message);
+            }
         })
 
     };
